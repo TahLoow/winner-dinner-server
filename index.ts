@@ -1,5 +1,9 @@
 import express from 'express';
 import { getRecipes } from './src/models/winnerdinner_model';
+import * as dotenv from 'dotenv';
+//require('dotenv').config({ path: __dirname+'/../.env.local' });
+
+dotenv.config({ path: __dirname+'/../.env.local' });
 
 const app = express()
 const port = 3001
@@ -44,5 +48,5 @@ app.delete('/merchants/:id', (req, res) => {
 })
 */
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+  console.log(`App running on port ${port}.`);
 })
