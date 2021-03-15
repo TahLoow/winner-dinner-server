@@ -1,22 +1,27 @@
-const Pool = require('pg').Pool
+import { Pool as Pool } from 'pg';
+import { db } from '../utils/config';
+
 const pool = new Pool({
-  user: 'suleiman',
-  host: '104.238.129.140',
-  database: 'winnerdinner_dev',
-  password: 'fierfal**',
-  port: 5432,
+  user: db.USER,
+  host: db.HOST,
+  database: db.NAME,
+  port: Number(db.PORT),
+  password: db.PASS,
 });
 
 
-const getRecipes = () => {
-  return new Promise(function(resolve, reject) {
+export function getRecipes(): Promise<unknown> {
+  return new Promise(function (resolve, reject) {
     pool.query('SELECT * FROM recipes ORDER BY id ASC', (error, results) => {
-      if (error) {
-        reject(error)
+      if (error || results == null || results == undefined) {
+        reject(error);
+        console.log(error, db);
+        return;
       }
+      console.log(results);
       resolve(results.rows);
-    })
-  })
+    });
+  });
 }
 
 /*

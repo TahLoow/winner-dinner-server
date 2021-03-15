@@ -1,15 +1,26 @@
 {
-  "name": "postgres-node",
+  "name": "winner-dinner-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Server code for Winner Dinner",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile-typescript": "tsc",
+    "start": "eslint . --ext .ts && npm run compile-typescript && node ./dist/index.js",
+    "lint": "eslint . --ext .ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/pg": "^7.14.11",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.22.0",
+    "typescript": "^4.2.3"
   }
 }
