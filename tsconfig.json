@@ -2,7 +2,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "esModuleInterop": true,
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution" : "node",
+    "noEmit": true
   },
-  "include": ["./*"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

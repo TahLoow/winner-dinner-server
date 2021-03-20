@@ -1,6 +1,6 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv'
 
-dotenv.config({ path: __dirname+'/../../../.env.local' });
+dotenv.config({ path: __dirname+'/../../../.env.local' })
 
 export const db = {
   NAME: process.env.DB_NAME,

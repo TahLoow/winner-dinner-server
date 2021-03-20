@@ -1,5 +1,5 @@
-import { Pool as Pool } from 'pg';
-import { db } from '../utils/config';
+import { Pool as Pool } from 'pg'
+import { db } from '../utils/config'
 
 const pool = new Pool({
   user: db.USER,
@@ -7,21 +7,21 @@ const pool = new Pool({
   database: db.NAME,
   port: Number(db.PORT),
   password: db.PASS,
-});
+})
 
 
 export function getRecipes(): Promise<unknown> {
   return new Promise(function (resolve, reject) {
     pool.query('SELECT * FROM recipes ORDER BY id ASC', (error, results) => {
       if (error || results == null || results == undefined) {
-        reject(error);
-        console.log(error, db);
-        return;
+        reject(error)
+        console.log(error, db)
+        return
       }
-      console.log(results);
-      resolve(results.rows);
-    });
-  });
+      console.log(results)
+      resolve(results.rows)
+    })
+  })
 }
 
 /*
