@@ -1,7 +1,7 @@
 import { Pool as Pool } from 'pg'
 import { db } from '../utils/config'
 
-import { BaseRecipe, Recipe } from "./recipe.interface";
+import { BaseRecipe, Recipe } from './recipe.interface'
 
 const pool = new Pool({
   user: db.USER,
