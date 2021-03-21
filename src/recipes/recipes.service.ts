@@ -1,6 +1,8 @@
 import { Pool as Pool } from 'pg'
 import { db } from '../utils/config'
 
+import { BaseRecipe, Recipe } from "./recipe.interface";
+
 const pool = new Pool({
   user: db.USER,
   host: db.HOST,
@@ -9,8 +11,8 @@ const pool = new Pool({
   password: db.PASS,
 })
 
-
-export function getRecipes(): Promise<unknown> {
+// Should be all ** public ** recipes
+export function findAll(): Promise<Recipe[]> {
   return new Promise(function (resolve, reject) {
     pool.query('SELECT * FROM recipes ORDER BY id ASC', (error, results) => {
       if (error || results == null || results == undefined) {
@@ -24,6 +26,26 @@ export function getRecipes(): Promise<unknown> {
   })
 }
 
+/*
+export const find = async (id: number): Promise<Recipe> => {...};
+
+export const create = async (newRecipe: BaseRecipe): Promise<Recipe> => {...};
+
+export const update = async (
+  id: number,
+  itemUpdate: BaseRecipe
+): Promise<Recipe | null> => {...};
+
+export const remove = async (id: number): Promise<null | void> => {
+  const item = await find(id);
+
+  if (!item) {
+    return null;
+  }
+
+  delete items[id];
+};
+*/
 /*
 const createMerchant = (body) => {
   return new Promise(function(resolve, reject) {
@@ -49,5 +71,5 @@ const deleteMerchant = () => {
 }*/
 
 module.exports = {
-  getRecipes,
+  findAll,
 }
