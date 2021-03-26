@@ -3,23 +3,22 @@
   "version": "1.0.0",
   "description": "Server code for Winner Dinner",
   "scripts": {
-    "compile": "tsc && babel src --out-dir dist --extensions .ts",
-    "start": "eslint . --ext .ts && tsc && babel src --out-dir dist --extensions .ts && node ./dist/index.js",
+    "compile": "tsc",
+    "start": "eslint . --ext .ts && tsc && node ./dist/index.js",
     "lint": "eslint . --ext .ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/dotenv": "8.2.0",
+    "cors": "^2.8.5",
     "dotenv": "8.2.0",
     "express": "4.17.1",
+    "helmet": "^4.4.1",
     "pg": "8.5.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.10",
-    "@babel/core": "7.13.10",
-    "@babel/preset-env": "7.13.10",
-    "@babel/preset-typescript": "7.13.0",
+    "@types/cors": "^2.8.10",
     "@types/express": "4.17.11",
     "@types/node": "14.14.35",
     "@types/pg": "7.14.11",

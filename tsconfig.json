@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "dist",
     "esModuleInterop": true,
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "moduleResolution" : "node",
-    "noEmit": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
   },
   "include": ["src"],
   "exclude": ["node_modules"]
