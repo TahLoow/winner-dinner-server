@@ -1,29 +1,40 @@
-import query from '../database/database.services'
+import { pool } from '../database/database.service'
 
-import { BaseRecipe, Recipe } from './recipe.interface'
+import { Recipe } from '../types/tstypes'
 import { recipesRouter } from './recipes.router'
 
-// Should be all ** public ** recipes
-export function findAll(): Promise<Recipe[]> {
-  return new Promise(function (resolve, reject) {
-    let temp:Recipe = {
-      name: 'placeholder';
-      description: 'd';
-      id: 2
-    }
-    resolve([temp])
-
-    // TODO: Make below into query from database.services
-    // pool.query('SELECT * FROM recipes ORDER BY id ASC', (error, results) => {
-    //   if (error || results == null || results == undefined) {
-    //     reject(error)
-    //     console.log(error, db)
-    //     return
-    //   }
-    //   console.log(results)
-    //   resolve(results.rows)
-    // })
+const queryForRecipeArray = (query_string: string): Promise<Recipe[]> => {
+  return new Promise<Recipe[]>(function (resolve, reject) {
+    pool.query(query_string, (error, results) => {
+      if (error || results == null || results == undefined) {
+        reject(error)
+        console.log(error)
+        return
+      } else {
+        const all_recipes: Recipe[] = []
+        results.rows.forEach((row, i) => {
+          all_recipes[i] = {
+            name: row.name,
+            description: row.description,
+            created_on: row.created_on,
+            is_winner: row.is_winner,
+            is_private: row.is_private,
+            link: row.link,
+            instructions: row.instructions,
+            servings: row.servings,
+            time_cook: row.time_cook
+          }
+        })
+        resolve(all_recipes)
+      }
+    })
   })
+}
+
+
+// Should be all ** public ** recipes
+export const findAll = (): Promise<Recipe[]> => {
+  return queryForRecipeArray('SELECT * FROM recipes ORDER BY created_on ASC')
 }
 
 /*
